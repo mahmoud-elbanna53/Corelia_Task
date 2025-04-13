@@ -1,38 +1,74 @@
-1. Installation Instructions:
+# 📞 Address Book API
 
-Cloning the Repository:
-Bash
+A simple Spring Boot API to manage contacts.
 
-git clone <repository_url>
-Database Configuration:
-YAML
+## 🚀 Quick Start
 
-spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/corelia_task
-    username: <your_username>
-    password: <your_password>
-2. Running Instructions:
+Follow these steps to get the API running.
 
-Building the Project:
-Bash
+### 🛠️ Prerequisites
 
-./gradlew build
-Running the Application:
-Bash
+-   Java 17+
+-   MySQL
+-   Gradle
 
-./gradlew bootRun
-3. Usage Instructions:
+### 📦 Installation
 
-API Endpoints:
-Detailed descriptions of each endpoint (registration, contact management, authentication).
-Information on request methods (POST, GET, PUT, DELETE).
-Payload requirements (JSON structure).
-Validation:
-Explanation of validation rules and error handling.
-Sorting and Pagination:
-How to use query parameters for sorting and pagination.
-Examples of request URLs.
-Authentication (if implemented):
-How to use JWT authentication.
-Instructions on including the JWT in the Authorization header.
+1.  Clone the repository:
+
+    ```bash
+    git clone <repository_url>
+    ```
+
+2.  Navigate to the project:
+
+    ```bash
+    cd addressbook
+    ```
+
+3.  Configure MySQL in `src/main/resources/application.yml`:
+
+    ```yaml
+    spring:
+      datasource:
+        url: jdbc:mysql://localhost:3306/corelia_task
+        username: <your_username>
+        password: <your_password>
+    ```
+
+### ▶️ Run
+
+1.  Build the project:
+
+    ```bash
+    ./gradlew build
+    ```
+
+2.  Run the application:
+
+    ```bash
+    ./gradlew bootRun
+    ```
+
+    The API will be available at `http://localhost:8080`.
+
+## ⚙️ API Usage
+
+### 👤 User Registration
+
+-   **`POST /api/v1/registration`**: Create a new user.
+    -   JSON body: `firstName`, `lastName`, `email`, `password`.
+
+### 📞 Contact Management
+
+-   **`POST /api/v1/contacts`**: Create a contact.
+    -   JSON body: `firstName`, `lastName`, `phoneNumber`, `emailAddress`, `birthdate`.
+-   **`GET /api/v1/contacts`**: List contacts (with `page`, `size`, `sort` query params).
+-   **`GET /api/v1/contacts/{id}`**: Get a contact by ID.
+-   **`PUT /api/v1/contacts/{id}`**: Update a contact.
+-   **`DELETE /api/v1/contacts/{id}`**: Delete a contact.
+
+### ✅ Validation
+
+-   Input is validated (name, email, password, phone, birthdate).
+-   Errors are returned in the response.
